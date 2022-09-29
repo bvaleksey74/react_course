@@ -1,19 +1,9 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
+import {Chats} from "../messages";
 
 const ChatsPage = () => {
-    const [chats, setChats] = useState(
-        [
-            {
-                id: 1,
-                name: 'main',
-                messages: [{id: 0, author: 'Alex', text: 'hello'}]},
-            {
-                id: 2,
-                name: 'flood',
-                messages: [{id: 0, author: 'bot', text: 'hi all'}]}
-        ]
-    );
+    const [chats, setChats] = useState(Chats);
     const [chatName, setChatName] = useState('');
     const handleDelete = (id) => {
         const filteredChats = chats.filter((chat) => chat.id !== id)
