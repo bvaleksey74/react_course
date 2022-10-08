@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import {addMessageAction, delMessageAction} from "../store/chatReducer";
 
 const ChatPage = () => {
     const [author, setAuthor] = useState('')
@@ -10,10 +11,10 @@ const ChatPage = () => {
     const chatsList = useSelector(state => state)
 
     const addMessage = (id) => {
-        dispatch({type: 'ADD_MESSAGE', payload: {id, message: {id: Date.now(), text: message, author: author}}})
+        dispatch(addMessageAction( {id, message: {id: Date.now(), text: message, author: author}}))
     }
     const delMessage = (messageId) => {
-        dispatch({type: 'DEL_MESSAGE', payload: {id: id, messageId}})
+        dispatch(delMessageAction({id: id, messageId}, {delayMs: 3000}))
     }
     return (
         <div>

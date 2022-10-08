@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import {addChatAction, delChatAction} from "../store/chatReducer";
 
 
 const ChatsPage = () => {
@@ -9,10 +10,10 @@ const ChatsPage = () => {
     const chatsList = useSelector(state => state)
 
     const addChat = () => {
-        dispatch({type: 'ADD_CHAT', payload: {id: Date.now(), name: chatName}})
+        dispatch(addChatAction(chatName))
     }
     const delChat = (id) => {
-        dispatch({type: 'DEL_CHAT', payload: id})
+        dispatch(delChatAction(id))
     }
 
     return (
@@ -22,6 +23,7 @@ const ChatsPage = () => {
                 {
                     Object.keys(chatsList).map(
                         chat => {
+                            console.log(chat)
                             return (
                                 <div key={chat}>
                                     <Link to={chat}>{chatsList[chat].name}</Link>
